@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
 class HomePage extends StatefulWidget {
+  static const String id="sjdnv";
   const HomePage({super.key});
 
   @override
@@ -52,6 +53,7 @@ class _HomePageState extends State<HomePage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
+        duration: Duration(seconds: 2),
         content: Text("An item has been deleted"),
       ),
     );
@@ -63,9 +65,9 @@ class _HomePageState extends State<HomePage> {
           items.firstWhere((element) => element["key"] == itemkeys);
       _name.text = existingItem["name"];
       _surname.text = existingItem["surname"];
-    }else {
+    } else {
       scaffoldKey.currentState?.showBottomSheet(
-            (context) => Container(
+        (context) => Container(
           color: Colors.grey,
           padding: EdgeInsets.only(
             bottom: 15,
@@ -118,7 +120,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
-
     }
 
     scaffoldKey.currentState?.showBottomSheet(
@@ -216,7 +217,11 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showform(context, null),
+        onPressed: () {
+
+          _showform(context, null);
+
+        },
         child: const Icon(Icons.add),
       ),
     );
